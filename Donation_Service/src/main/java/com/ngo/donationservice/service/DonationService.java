@@ -22,7 +22,13 @@ public class DonationService {
 
 	public Donation addDonation(Donation donation) {
 		donation.setDonationStatus("Pending");
-		return donationRepository.save(donation);
+		
+		Donation savedDonation = donationRepository.save(donation);
+		
+		User user = userClient.getUserById(savedDonation.getUserId());
+		savedDonation.setUser(user);
+		
+		return savedDonation;
 	}
 
 	public Optional<Donation> getDonationById(Long id) {

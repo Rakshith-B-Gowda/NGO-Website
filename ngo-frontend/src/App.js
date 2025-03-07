@@ -6,7 +6,7 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Home from "./components/Home";
 import AdminDashboard from "./components/Admin/AdminDashboard";
-import EventsAdmin from "./components/Admin/EventsAdmin"; // Import EventsAdmin
+import EventsAdmin from "./components/Admin/EventsAdmin"; 
 import PrivateRoute from "./components/Auth/PrivateRoute";
 import Unauthorized from "./components/Common/Unauthorized";
 import UserProfile from "./components/User/UserProfile";

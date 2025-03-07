@@ -1,0 +1,12 @@
+package com.ngo.eventservice.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@FeignClient("VOLUNTEER-SERVICE")
+public interface VolunteerServiceClient {
+
+    @PostMapping("/api/volunteers/register")
+    void registerVolunteer(@RequestParam Long userId, @RequestParam Long eventId);
+}

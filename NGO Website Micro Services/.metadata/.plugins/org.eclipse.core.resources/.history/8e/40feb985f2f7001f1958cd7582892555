@@ -1,0 +1,31 @@
+package com.ngo.eventservice.controller;
+
+import com.example.eventservice.dto.EventDto;
+import com.example.eventservice.service.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/events")
+public class EventController {
+  
+    @Autowired
+    private EventService eventService;
+
+    @PostMapping
+    public EventDto addEvent(@RequestBody EventDto eventDto) {
+        return eventService.addEvent(eventDto);
+    }
+
+    @GetMapping
+    public List<EventDto> getAllEvents() {
+        return eventService.getAllEvents();
+    }
+
+    @GetMapping("/search")
+    public List<EventDto> searchEvents(@RequestParam String query) {
+        return eventService.searchEvents(query);
+    }
+}

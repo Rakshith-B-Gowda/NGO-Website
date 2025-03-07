@@ -1,0 +1,42 @@
+package com.ngo.volunteerservice.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ngo.volunteerservice.dto.EventDto;
+import com.ngo.volunteerservice.dto.UserDto;
+
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Entity
+public class Volunteer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long volunteerId;
+
+    private Long userId;
+    private String name;
+    private String email;
+    
+    @ElementCollection
+    private List<Long> eventIds = new ArrayList<>();
+
+    @Transient
+    private List<EventDto> events = new ArrayList<>();
+    
+    @Transient
+    UserDto user;
+
+}

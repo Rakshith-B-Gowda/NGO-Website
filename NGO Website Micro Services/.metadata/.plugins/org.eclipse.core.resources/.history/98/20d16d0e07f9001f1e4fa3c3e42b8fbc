@@ -1,0 +1,22 @@
+package com.ngo.eventservice.feign;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.ngo.eventservice.dto.VolunteerDto;
+
+@FeignClient("VOLUNTEER-SERVICE")
+public interface VolunteerInterface {
+
+	@GetMapping("/event/{eventId}")
+    public List<VolunteerDto> getVolunteersByEventId(@PathVariable Long eventId);
+	
+	@DeleteMapping("/volunteers/{id}")
+    public void deleteVolunteer(@PathVariable Long id);
+	
+}

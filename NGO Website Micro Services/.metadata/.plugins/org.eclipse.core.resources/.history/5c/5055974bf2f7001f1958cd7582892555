@@ -1,0 +1,58 @@
+package com.ngo.eventservice.service;
+
+import com.example.eventservice.dto.EventDto;
+import com.example.eventservice.model.Event;
+import com.example.eventservice.repository.EventRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class EventServiceImpl implements EventService {
+
+    @Autowired
+    private EventRepository eventRepository;
+
+    @Override
+    public EventDto addEvent(EventDto eventDto) {
+        Event event = mapToEntity(eventDto);
+        Event savedEvent = eventRepository.save(event);
+        return mapToDto(savedEvent);
+    }
+
+    @Override
+    public List<EventDto> getAllEvents() {
+        return eventRepository.findAll().stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EventDto> searchEvents(String query) {
+        return eventRepository.findByNameContainingIgnoreCase(query).stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    // Helper methods to map between Entity and DTO
+    private EventDto mapToDto(Event event) {
+        EventDto dto = new EventDto();
+        dto.setId(event.getId());
+        dto.setName(event.getName());
+        dto.setLocation(event.getLocation());
+        dto.setDate(event.getDate().toString());
+        dto.setDescription(event.getDescription());
+        return dto;
+    }
+
+    private Event mapToEntity(EventDto dto) {
+        Event event = new Event();
+        event.setName(dto.getName());
+        event.setLocation(dto.getLocation());
+        event.setDate(LocalDate.parse(dto.getDate()));
+        event.setDescription(dto.getDescription());
+        return event;
+    }
+}

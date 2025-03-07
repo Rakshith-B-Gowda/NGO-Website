@@ -1,0 +1,42 @@
+package com.ngo.volunteerservice.controller;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.ngo.volunteerservice.model.Volunteer;
+import com.ngo.volunteerservice.service.VolunteerService;
+
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+
+@RestController
+@AllArgsConstructor
+@RequestMapping("/volunteers")
+public class VolunteerController {
+
+    private final VolunteerService volunteerService;
+
+    @PostMapping("/register/{userId}/{eventId}")
+    public Volunteer registerVolunteer(@PathVariable Long userId, Long eventId) {
+        return volunteerService.registerVolunteer(registrationDto.getUserId(), registrationDto.getEventId());
+    }
+
+    @GetMapping("/{id}")
+    public Volunteer getVolunteerById(@PathVariable Long id) {
+        return volunteerService.getVolunteerById(id);
+    }
+
+    @GetMapping("/user/{userId}")
+    public List<Volunteer> getVolunteersByUserId(@PathVariable Long userId) {
+        return volunteerService.getVolunteersByUserId(userId);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteVolunteer(@PathVariable Long id) {
+        volunteerService.deleteVolunteer(id);
+        return ResponseEntity.ok().build();
+    }
+}
+

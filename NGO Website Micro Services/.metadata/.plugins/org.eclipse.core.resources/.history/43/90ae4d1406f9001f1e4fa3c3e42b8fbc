@@ -1,0 +1,8 @@
+package com.ngo.eventservice.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient("VOLUNTEER-SERVICE")
+public interface VolunteerInterface {
+
+}

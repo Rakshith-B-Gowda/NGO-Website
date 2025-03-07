@@ -1,0 +1,12 @@
+spring.application.name=Event-Service
+
+server.port=9070
+
+#          Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/ngo_event_db?createDatabaseIfNotExist=true
+
+################### Config Server Information ##########################
+spring.config.import=optional:configserver:http://localhost:8700
+
+#          Set logging level for your service
+logging.level.com.ngo.eventservice.service.=DEBUG

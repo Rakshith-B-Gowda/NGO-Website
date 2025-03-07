@@ -1,0 +1,738 @@
+{
+	"info": {
+		"_postman_id": "9d7680cc-c638-48e5-bb93-ca183e1092e8",
+		"name": "NGO App",
+		"description": "All the End Points for my NGO Website",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40411725"
+	},
+	"item": [
+		{
+			"name": "User Service",
+			"item": [
+				{
+					"name": "Show All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyMDQ2LCJleHAiOjE3NDEzMzU2NDZ9.jg8Jn95aH6FWCYvJEpnHVZ4mOmVUbSCUcME1bbFOfAw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyMDQ2LCJleHAiOjE3NDEzMzU2NDZ9.jg8Jn95aH6FWCYvJEpnHVZ4mOmVUbSCUcME1bbFOfAw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/users/id/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"users",
+								"id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyMDQ2LCJleHAiOjE3NDEzMzU2NDZ9.jg8Jn95aH6FWCYvJEpnHVZ4mOmVUbSCUcME1bbFOfAw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/users/email/rakshith@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"users",
+								"email",
+								"rakshith@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User by UserName",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyMDQ2LCJleHAiOjE3NDEzMzU2NDZ9.jg8Jn95aH6FWCYvJEpnHVZ4mOmVUbSCUcME1bbFOfAw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/users/Rakshith",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"users",
+								"Rakshith"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Donation Service",
+			"item": [
+				{
+					"name": "Show All Donations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyMDQ2LCJleHAiOjE3NDEzMzU2NDZ9.jg8Jn95aH6FWCYvJEpnHVZ4mOmVUbSCUcME1bbFOfAw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/donations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"donations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Donation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyNDIwLCJleHAiOjE3NDEzMzYwMjB9.L9HBaMraCCLp0h0K95V-pcQ902hpVtzq8As2o_PVS1g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 2,\r\n    \"donationType\": \"MONEY\",\r\n    \"amount\": 15069,\r\n    \"frequency\": \"ONE_TIME\",\r\n    \"tributeType\": \"HONOR\",\r\n    \"honoreeName\": \"Person\",\r\n    \"message\": \"Good Work\",\r\n    \"donorInfo\": {\r\n        \"firstName\": \"Rakshith\",\r\n        \"lastName\": \"Gowda\",\r\n        \"email\": \"raks@gmail.com\",\r\n        \"phone\": \"8105855926\",\r\n        \"anonymous\": false\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8765/donations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"donations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Donation ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyNDIwLCJleHAiOjE3NDEzMzYwMjB9.L9HBaMraCCLp0h0K95V-pcQ902hpVtzq8As2o_PVS1g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/donations/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"donations",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By User ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyNDIwLCJleHAiOjE3NDEzMzYwMjB9.L9HBaMraCCLp0h0K95V-pcQ902hpVtzq8As2o_PVS1g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/donations/user/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"donations",
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Volunteer Service",
+			"item": [
+				{
+					"name": "Register Volunteer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyODU0LCJleHAiOjE3NDEzMzY0NTR9.99mT7vqyFTh53cRnnjVL1HdwuunLHGdGp8dAU4G4trc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/volunteers/register/2/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"volunteers",
+								"register",
+								"2",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Volunteer By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyODU0LCJleHAiOjE3NDEzMzY0NTR9.99mT7vqyFTh53cRnnjVL1HdwuunLHGdGp8dAU4G4trc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/volunteers/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"volunteers",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Volunteer By User ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyODU0LCJleHAiOjE3NDEzMzY0NTR9.99mT7vqyFTh53cRnnjVL1HdwuunLHGdGp8dAU4G4trc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/volunteers/user/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"volunteers",
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Volunteer ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IlVTRVIiLCJ1c2VySWQiOjIsInN1YiI6IlJha3NoaXRoIiwiaWF0IjoxNzQxMzMyODU0LCJleHAiOjE3NDEzMzY0NTR9.99mT7vqyFTh53cRnnjVL1HdwuunLHGdGp8dAU4G4trc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/volunteers/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"volunteers",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Volunteers By Event ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/volunteers/event/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"volunteers",
+								"event",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication Service",
+			"item": [
+				{
+					"name": "Welcome Page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/auth/welcome",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"auth",
+								"welcome"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add New User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"Rakshith\",\r\n  \"userEmail\": \"rakshith@gmail.com\",\r\n  \"userPassword\": \"Rakshith@123\",\r\n  \"roles\": \"USER\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8765/auth/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"auth",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Rakshith\",\r\n    \"password\": \"Rakshith@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8765/auth/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"auth",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event Service",
+			"item": [
+				{
+					"name": "Add Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFETUlOIiwidXNlcklkIjoxLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MTMzMjY4OSwiZXhwIjoxNzQxMzM2Mjg5fQ.cPK4LcRySBSSv3UL5wIeVWmeJePHxkH6RcloG434xoA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Community Cleanup\",\r\n  \"location\": \"Downtown Park\",\r\n  \"date\": \"2025-04-22\",\r\n  \"description\": \"An event to clean up the park.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8765/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFETUlOIiwidXNlcklkIjoxLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MTMzMjY4OSwiZXhwIjoxNzQxMzM2Mjg5fQ.cPK4LcRySBSSv3UL5wIeVWmeJePHxkH6RcloG434xoA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFETUlOIiwidXNlcklkIjoxLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MTMzMjY4OSwiZXhwIjoxNzQxMzM2Mjg5fQ.cPK4LcRySBSSv3UL5wIeVWmeJePHxkH6RcloG434xoA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Annual Charity Run\",\r\n  \"location\": \"Central Park\",\r\n  \"date\": \"2025-05-15\",\r\n  \"description\": \"An annual marathon event to raise funds for local charities.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8765/events/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"events",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFETUlOIiwidXNlcklkIjoxLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MTMzMjY4OSwiZXhwIjoxNzQxMzM2Mjg5fQ.cPK4LcRySBSSv3UL5wIeVWmeJePHxkH6RcloG434xoA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/events/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"events",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFETUlOIiwidXNlcklkIjoxLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MTMzMjY4OSwiZXhwIjoxNzQxMzM2Mjg5fQ.cPK4LcRySBSSv3UL5wIeVWmeJePHxkH6RcloG434xoA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/events?query=Annual",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"events"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Annual"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFETUlOIiwidXNlcklkIjoxLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MTMzMjY4OSwiZXhwIjoxNzQxMzM2Mjg5fQ.cPK4LcRySBSSv3UL5wIeVWmeJePHxkH6RcloG434xoA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/events/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"events",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

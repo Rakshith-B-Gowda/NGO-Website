@@ -1,0 +1,223 @@
+package com.ngo.volunteerservice.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.ngo.volunteerservice.dto.EventDto;
+import com.ngo.volunteerservice.dto.UserDto;
+import com.ngo.volunteerservice.exception.ResourceNotFoundException;
+import com.ngo.volunteerservice.feign.UserInterface;
+import com.ngo.volunteerservice.model.Volunteer;
+import com.ngo.volunteerservice.model.VolunteerStatus;
+import com.ngo.volunteerservice.repository.VolunteerRepository;
+
+import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+@Service
+@AllArgsConstructor
+public class VolunteerServiceImpl implements VolunteerService {
+
+    private static final Logger logger = LoggerFactory.getLogger(VolunteerServiceImpl.class);
+
+    private final VolunteerRepository volunteerRepository;
+    private final UserInterface userInterface;
+
+    @Override
+    public Volunteer registerVolunteer(Long userId, Long eventId) {
+        logger.info("Registering volunteer with user ID {} for event ID {}", userId, eventId);
+
+        // Check if the user exists in User Service
+        UserDto user = userInterface.getUserById(userId);
+        if (user == null) {
+            logger.error("User not found with ID: {}", userId);
+            throw new ResourceNotFoundException("User", "ID", userId);
+        }
+
+        // Fetch event details from Event Service
+        EventDto eventDto = eventServiceClient.getEvent(eventId);
+        if (eventDto == null) {
+            logger.error("Event not found with ID: {}", eventId);
+            throw new ResourceNotFoundException("Event", "ID", eventId);
+        }
+
+        // Retrieve existing volunteer or create new
+        Volunteer volunteer = volunteerRepository.findByUserId(userId);
+
+        if (volunteer != null) {
+            logger.info("Volunteer already exists with user ID {}, updating event registrations", userId);
+
+            // Initialize eventIds list if null
+            if (volunteer.getEventIds() == null) {
+                volunteer.setEventIds(new ArrayList<>());
+            }
+
+            // Add event ID to volunteer's eventIds list
+            if (!volunteer.getEventIds().contains(eventId)) {
+                volunteer.getEventIds().add(eventId);
+                logger.debug("Event ID {} added to volunteer's event list.", eventId);
+            } else {
+                logger.warn("Volunteer already registered for event ID {}", eventId);
+            }
+
+            // Save updated volunteer
+            volunteerRepository.save(volunteer);
+            logger.info("Volunteer updated successfully with ID: {} for event ID {}", volunteer.getVolunteerId(), eventId);
+
+        } else {
+            logger.info("Registering new volunteer with user ID {}", userId);
+
+            // Create new volunteer
+            volunteer = new Volunteer();
+            volunteer.setUserId(userId);
+            volunteer.setName(user.getName());
+            volunteer.setEmail(user.getEmail());
+            volunteer.setUser(user);
+
+            // Initialize eventIds list and add eventId
+            volunteer.setEventIds(new ArrayList<>());
+            volunteer.getEventIds().add(eventId);
+
+            // Save new volunteer
+            volunteerRepository.save(volunteer);
+            logger.debug("Volunteer saved with ID: {}", volunteer.getVolunteerId());
+
+            logger.info("Volunteer registered successfully with ID: {} for event ID {}", volunteer.getVolunteerId(), eventId);
+        }
+
+        // Optionally, set event details in transient events field
+        if (volunteer.getEvents() == null) {
+            volunteer.setEvents(new ArrayList<>());
+        }
+        volunteer.getEvents().add(eventDto);
+
+        return volunteer;
+    }
+
+    @Override
+    public Volunteer getVolunteerById(Long id) {
+        logger.info("Fetching volunteer with ID: {}", id);
+
+        // Find the volunteer by ID
+        Volunteer volunteer = volunteerRepository.findById(id)
+                .orElseThrow(() -> {
+                    logger.error("Volunteer not found with ID : {}", id);
+                    return new ResourceNotFoundException("Volunteer", "id", id);
+                });
+
+        // Fetch user details
+        UserDto user = userInterface.getUserById(volunteer.getUserId());
+        if (user == null) {
+            logger.error("User not found with id: {}", volunteer.getUserId());
+            throw new ResourceNotFoundException("User", "id", volunteer.getUserId());
+        }
+        volunteer.setUser(user);
+
+        logger.info("Volunteer retrieved successfully with ID: {}", id);
+        return volunteer;
+    }
+
+    @Override
+    public List<Volunteer> getAllVolunteers() {
+        logger.info("Fetching all volunteers");
+
+        List<Volunteer> volunteers = volunteerRepository.findAll();
+        logger.debug("Number of volunteers found: {}", volunteers.size());
+
+        // Set user details for each volunteer
+        volunteers.forEach(v -> {
+            UserDto user = userInterface.getUserById(v.getUserId());
+            if (user != null) {
+                v.setUser(user);
+            } else {
+                logger.warn("User not found with ID: {} for volunteer ID: {}", v.getUserId(), v.getVolunteerId());
+                // Optionally handle missing user details
+            }
+        });
+
+        logger.info("All volunteers retrieved successfully");
+        return volunteers;
+    }
+
+    @Override
+    public List<Volunteer> getVolunteersByUserId(Long userId) {
+        logger.info("Fetching volunteers for user ID: {}", userId);
+
+        // Check if the user exists
+        UserDto user = userInterface.getUserById(userId);
+        if (user == null) {
+            logger.error("User not found with ID: {}", userId);
+            throw new ResourceNotFoundException("User", "id", userId);
+        }
+        logger.debug("User found: {}", user);
+
+        // Find volunteers by user ID
+        List<Volunteer> volunteers = volunteerRepository.findByUserId(userId);
+        if (volunteers.isEmpty()) {
+            logger.error("Volunteer not found with User ID: {}", userId);
+            throw new ResourceNotFoundException("Volunteer", "User Id", userId);
+        }
+        logger.debug("Number of volunteers found for user {}: {}", userId, volunteers.size());
+
+        // Set user details in each volunteer
+        volunteers.forEach(v -> v.setUser(user));
+
+        logger.info("Volunteers for user ID {} retrieved successfully", userId);
+        return volunteers;
+    }
+
+    @Override
+    public Volunteer updateVolunteer(Volunteer volunteer) {
+        logger.info("Updating volunteer with ID: {}", volunteer.getVolunteerId());
+
+        // Find the existing volunteer by ID
+        Volunteer existingVolunteer = volunteerRepository.findById(volunteer.getVolunteerId())
+                .orElseThrow(() -> {
+                    logger.error("Volunteer not found with ID: {}", volunteer.getVolunteerId());
+                    return new ResourceNotFoundException("Volunteer", "id", volunteer.getVolunteerId());
+                });
+        logger.debug("Existing volunteer details: {}", existingVolunteer);
+
+        // Check if the user exists
+        UserDto user = userInterface.getUserById(volunteer.getUserId());
+        if (user == null) {
+            logger.error("User not found with ID: {}", volunteer.getUserId());
+            throw new ResourceNotFoundException("User", "id", volunteer.getUserId());
+        }
+
+        // Update the existing volunteer with new values
+        existingVolunteer.setStatus(volunteer.getStatus());
+        existingVolunteer.setUserId(volunteer.getUserId());
+        existingVolunteer.setSkillSet(volunteer.getSkillSet());
+
+        // Save the updated volunteer back to the repository
+        Volunteer updatedVolunteer = volunteerRepository.save(existingVolunteer);
+        logger.debug("Volunteer updated: {}", updatedVolunteer);
+
+        // Set user details in the updated volunteer
+        updatedVolunteer.setUser(user);
+
+        logger.info("Volunteer with ID {} updated successfully", updatedVolunteer.getVolunteerId());
+        return updatedVolunteer;
+    }
+
+    @Override
+    public void deleteVolunteer(Long id) {
+        logger.info("Deleting volunteer with ID: {}", id);
+
+        // Find the volunteer to delete
+        Volunteer volunteer = volunteerRepository.findById(id)
+                .orElseThrow(() -> {
+                    logger.error("Volunteer not found with ID: {}", id);
+                    return new ResourceNotFoundException("Volunteer ", "id", id);
+                });
+
+        // Delete the volunteer from the repository
+        volunteerRepository.delete(volunteer);
+        logger.info("Volunteer with ID {} deleted successfully", id);
+    }
+}

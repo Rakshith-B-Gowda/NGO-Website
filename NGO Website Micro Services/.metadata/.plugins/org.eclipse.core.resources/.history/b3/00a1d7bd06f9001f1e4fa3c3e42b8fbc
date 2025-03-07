@@ -1,0 +1,18 @@
+package com.ngo.eventservice.dto;
+
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class Volunteer {
+
+    @Id
+    private Long volunteerId;
+    private Long userId;
+    private Long eventId;
+
+}

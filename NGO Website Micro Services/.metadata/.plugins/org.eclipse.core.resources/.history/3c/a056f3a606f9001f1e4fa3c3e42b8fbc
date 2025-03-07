@@ -1,0 +1,19 @@
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Entity
+public class Volunteer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long volunteerId;
+
+    private Long userId;
+    private Long eventId;
+
+    @Transient
+    private UserDto user;
+
+    @Transient
+    private EventDto event;
+}

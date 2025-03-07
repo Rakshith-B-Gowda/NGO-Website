@@ -1,0 +1,7 @@
+// TributeType.java
+package com.ngo.donationservice.model;
+
+public enum TributeType {
+    HONOR,
+    MEMORY
+}

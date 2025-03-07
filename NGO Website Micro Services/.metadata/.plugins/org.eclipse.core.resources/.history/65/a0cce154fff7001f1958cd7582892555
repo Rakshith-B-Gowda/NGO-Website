@@ -1,0 +1,12 @@
+package com.ngo.volunteerservice.dto;
+
+public class EventDto {
+    private Long id;
+    private String name;
+    private String location;
+    private String date;
+    private String description;
+
+    // Constructors, Getters, and Setters
+    // ...
+}

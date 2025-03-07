@@ -1,0 +1,12 @@
+package com.ngo.volunteerservice.feign;
+
+import com.example.volunteerservice.dto.EventDto;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.*;
+
+@FeignClient(name = "event-service")
+public interface EventServiceClient {
+
+    @GetMapping("/events/{eventId}")
+    EventDto getEvent(@PathVariable("eventId") Long eventId);
+}

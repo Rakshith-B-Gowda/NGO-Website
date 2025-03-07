@@ -1,0 +1,29 @@
+package com.example.volunteerservice.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Entity
+public class Volunteer {
+
+    @Id
+    private Long volunteerId; // Assuming userId is provided
+
+    private 
+    private String name;
+    private String email;
+
+    @Transient
+    private List<EventDto> events;
+
+}

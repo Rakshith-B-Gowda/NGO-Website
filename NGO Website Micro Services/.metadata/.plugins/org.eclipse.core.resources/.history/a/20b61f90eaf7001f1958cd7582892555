@@ -1,0 +1,8 @@
+// DonationFrequency.java
+package com.ngo.donationservice.model;
+
+public enum DonationFrequency {
+    ONE_TIME,
+    MONTHLY,
+    ANNUALLY
+}

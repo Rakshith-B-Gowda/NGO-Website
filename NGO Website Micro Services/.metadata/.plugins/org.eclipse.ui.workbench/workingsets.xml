@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1738639811909_0" label="Java Main Sources" name="Java Main Sources"/>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1738639811973_1" label="Java Test Sources" name="Java Test Sources"/>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1738639995833_3" label="Service-Registery" name="Service-Registery">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Service-Registery" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1738640035024_4" label="ConfigServer" name="ConfigServer">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/ConfigServer" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1738640050209_5" label="User_Service" name="User_Service"/>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1738640118159_6" label="Volunteer-Service" name="Volunteer-Service">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Volunteer-Service" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1738640170077_7" label="Donation_Service" name="Donation_Service">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Donation-Service" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1738640202081_8" label="Api-Gateway" name="Api-Gateway">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Api-Gateway" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1739441026903_9" label="Spring-Security-Latest" name="Spring-Security-Latest">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Security-Service" type="4"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1738639817074_2" label="Window Working Set" name="Aggregate for window 1738639817074"/>
+</workingSetManager>

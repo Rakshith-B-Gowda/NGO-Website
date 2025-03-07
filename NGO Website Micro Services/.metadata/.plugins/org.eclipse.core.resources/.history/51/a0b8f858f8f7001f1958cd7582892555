@@ -1,0 +1,85 @@
+package com.ngo.eventservice.service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ngo.eventservice.dto.EventDto;
+import com.ngo.eventservice.model.Event;
+import com.ngo.eventservice.repository.EventRepository;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
+public class EventServiceImpl implements EventService {
+
+    private EventRepository eventRepository;
+
+    @Override
+    public EventDto addEvent(EventDto eventDto) {
+        Event event = mapToEntity(eventDto);
+        Event savedEvent = eventRepository.save(event);
+        return mapToDto(savedEvent);
+    }
+
+    @Override
+    public List<EventDto> getAllEvents() {
+        return eventRepository.findAll().stream()
+                .map(this::mapToDto)
+                .toList();
+    }
+
+    @Override
+    public List<EventDto> searchEvents(String query) {
+        return eventRepository.findByNameContainingIgnoreCase(query).stream()
+                .map(this::mapToDto)
+                .toList();
+    }
+    
+    @Override
+    public EventDto updateEvent(Long eventId, EventDto eventDto) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+
+        // Update event details
+        event.setName(eventDto.getName());
+        event.setLocation(eventDto.getLocation());
+        event.setDate(LocalDate.parse(eventDto.getDate()));
+        event.setDescription(eventDto.getDescription());
+
+        Event updatedEvent = eventRepository.save(event);
+
+        return mapToDto(updatedEvent);
+    }
+
+    @Override
+    public void deleteEvent(Long eventId) {
+        if (!eventRepository.existsById(eventId)) {
+            throw new RuntimeException("Event not found");
+        }
+        eventRepository.deleteById(eventId);
+    }
+
+    // Helper methods to map between Entity and DTO
+    private EventDto mapToDto(Event event) {
+        EventDto dto = new EventDto();
+        dto.setId(event.getId());
+        dto.setName(event.getName());
+        dto.setLocation(event.getLocation());
+        dto.setDate(event.getDate().toString());
+        dto.setDescription(event.getDescription());
+        return dto;
+    }
+
+    private Event mapToEntity(EventDto dto) {
+        Event event = new Event();
+        event.setName(dto.getName());
+        event.setLocation(dto.getLocation());
+        event.setDate(LocalDate.parse(dto.getDate()));
+        event.setDescription(dto.getDescription());
+        return event;
+    }
+}

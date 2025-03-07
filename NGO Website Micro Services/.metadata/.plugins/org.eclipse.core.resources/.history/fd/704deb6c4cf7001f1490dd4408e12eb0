@@ -1,0 +1,28 @@
+// FeignClientInterceptor.java
+package com.ngo.donationservice.config;
+
+import feign.RequestInterceptor;
+import feign.RequestTemplate;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+@Configuration
+public class FeignClientInterceptor implements RequestInterceptor {
+
+    private static final String AUTHORIZATION_HEADER = "Authorization";
+    private static final String TOKEN_TYPE = "Bearer";
+
+    @Override
+    public void apply(RequestTemplate requestTemplate) {
+        // Retrieve the Authentication object
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && authentication.getCredentials() != null) {
+            // Get the JWT token
+            String token = authentication.getCredentials().toString();
+            // Add the Authorization header to the request
+            requestTemplate.header(AUTHORIZATION_HEADER, String.format("%s %s", TOKEN_TYPE, token));
+        }
+    }
+}

@@ -1,0 +1,17 @@
+// FeignClientInterceptor.java
+package com.ngo.donationservice.config;
+
+import feign.RequestInterceptor;
+import feign.RequestTemplate;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+@Configuration
+public class FeignClientInterceptor implements RequestInterceptor {
+
+    private static final String AUTHORIZATION_HEADER = "Authorization";
+    private static final String TOKEN_TYPE = "Bearer";
+
+   
+}

@@ -1,0 +1,117 @@
+package com.ngo.eventservice.service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import com.ngo.eventservice.dto.EventDto;
+import com.ngo.eventservice.exception.EventNotFoundException;
+import com.ngo.eventservice.model.Event;
+import com.ngo.eventservice.repository.EventRepository;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
+public class EventServiceImpl implements EventService {
+
+	// Logger for this class
+	private static final Logger logger = LoggerFactory.getLogger(EventServiceImpl.class);
+
+	private EventRepository eventRepository;
+
+	@Override
+	public EventDto addEvent(EventDto eventDto) {
+		logger.info("Adding new event: {}", eventDto.getName());
+
+		// Map DTO to Entity
+		Event event = mapToEntity(eventDto);
+
+		// Save event to repository
+		Event savedEvent = eventRepository.save(event);
+		logger.debug("Event saved with ID: {}", savedEvent.getId());
+
+		// Map Entity to DTO and return
+		return mapToDto(savedEvent);
+	}
+
+	@Override
+	public List<EventDto> getAllEvents() {
+		logger.info("Fetching all events");
+
+		// Retrieve all events and map to DTOs
+		return eventRepository.findAll().stream().map(this::mapToDto).toList();
+	}
+
+	@Override
+	public EventDto getEventById(Long eventId) {
+		logger.info("Fetching event with ID: {}", eventId);
+
+		Event event = eventRepository.findById(eventId).orElseThrow(() -> {
+			logger.error("Event not found with ID: {}", eventId);
+			return new EventNotFoundException("Event not found with ID: " + eventId);
+		});
+
+		logger.info("Event retrieved successfully with ID: {}", eventId);
+		return mapToDto(event);
+	}
+
+	@Override
+	public EventDto updateEvent(Long eventId, EventDto eventDto) {
+		logger.info("Updating event with ID: {}", eventId);
+
+		// Find event by ID or throw exception if not found
+		Event event = eventRepository.findById(eventId).orElseThrow(() -> {
+			logger.error("Event not found with ID: {}", eventId);
+			return new EventNotFoundException("Event not found with ID: " + eventId);
+		});
+
+		// Update event details
+		event.setName(eventDto.getName());
+		event.setLocation(eventDto.getLocation());
+		event.setDate(LocalDate.parse(eventDto.getDate()));
+		event.setDescription(eventDto.getDescription());
+
+		// Save updated event
+		Event updatedEvent = eventRepository.save(event);
+		logger.debug("Event updated with ID: {}", updatedEvent.getId());
+
+		// Map Entity to DTO and return
+		return mapToDto(updatedEvent);
+	}
+	
+	@Override
+	public void deleteEventById(Long id) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+
+	// Helper method to map Entity to DTO
+	private EventDto mapToDto(Event event) {
+		// Map event entity to DTO
+		EventDto dto = new EventDto();
+		dto.setId(event.getId());
+		dto.setName(event.getName());
+		dto.setLocation(event.getLocation());
+		dto.setDate(event.getDate().toString());
+		dto.setDescription(event.getDescription());
+		return dto;
+	}
+
+	// Helper method to map DTO to Entity
+	private Event mapToEntity(EventDto dto) {
+		// Map DTO to event entity
+		Event event = new Event();
+		event.setName(dto.getName());
+		event.setLocation(dto.getLocation());
+		event.setDate(LocalDate.parse(dto.getDate()));
+		event.setDescription(dto.getDescription());
+		return event;
+	}
+
+}

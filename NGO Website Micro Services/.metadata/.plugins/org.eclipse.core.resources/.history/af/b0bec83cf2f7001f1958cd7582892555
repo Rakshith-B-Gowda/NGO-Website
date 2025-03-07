@@ -1,0 +1,11 @@
+package com.ngo.eventservice.service;
+
+import com.example.eventservice.dto.EventDto;
+
+import java.util.List;
+
+public interface EventService {
+    EventDto addEvent(EventDto eventDto);
+    List<EventDto> getAllEvents();
+    List<EventDto> searchEvents(String query);
+}
